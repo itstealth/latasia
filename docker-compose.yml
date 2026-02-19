@@ -1,0 +1,36 @@
+services:
+  db:
+    image: bitnami/mariadb:latest
+    container_name: latasisa_db
+    environment:
+      - MARIADB_DATABASE=${DB_DATABASE}
+      - MARIADB_USER=${DB_USERNAME}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+    networks:
+      - latasisa-net
+    restart: always
+
+  app:
+    build: .                        # <--- Uses the Dockerfile we just created
+    container_name: latasisa_app
+    volumes:
+      - .:/var/www/html             # Mounts your code
+    ports:
+      - "127.0.0.1:8081:80"         # Exposes standard Apache port 80
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - APP_KEY=${APP_KEY}
+      - APP_DEBUG=false
+    depends_on:
+      - db
+    networks:
+      - latasisa-net
+    restart: always
+
+networks:
+  latasisa-net:
+    driver: bridge
