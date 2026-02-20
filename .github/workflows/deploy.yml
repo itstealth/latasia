@@ -2,7 +2,8 @@ name: 🚀 Build & Deploy to VPS
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -24,24 +25,20 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🏗️ Build Docker Image
-        run: |
-          docker build -t ghcr.io/itstealth/latasia:latest .
+        run: docker build -t ghcr.io/itstealth/latasia:latest .
 
       - name: 📤 Push Docker Image
-        run: |
-          docker push ghcr.io/itstealth/latasia:latest
+        run: docker push ghcr.io/itstealth/latasia:latest
 
       - name: 🚀 Deploy on VPS
-  uses: appleboy/ssh-action@v0.1.10
-  with:
-    host: ${{ secrets.SERVER_HOST }}
-    username: ${{ secrets.SERVER_USER }}
-    key: ${{ secrets.SERVER_SSH_KEY }}
-    port: 22
-    script: |
-      cd /var/www/latasisa
-      docker compose pull
-      docker compose up -d --remove-orphans
-      docker compose exec app php artisan migrate --force
-
-            
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            cd /var/www/latasisa
+            docker compose pull
+            docker compose up -d --remove-orphans
+            docker compose exec app php artisan migrate --force
