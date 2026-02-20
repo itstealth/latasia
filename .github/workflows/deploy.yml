@@ -39,7 +39,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 22
           script: |
-            sudo -i -u it_stealth bash << 'EOF'
             cd /var/www/latasisa
             docker compose pull
             docker compose up -d --remove-orphans
