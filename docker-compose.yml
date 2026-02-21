@@ -12,19 +12,13 @@ services:
     restart: always
 
   app:
-    build: .                        # <--- Uses the Dockerfile we just created
+    image: ghcr.io/itstealth/latasia:latest
     container_name: latasisa_app
-    volumes:
-      - .:/var/www/html             # Mounts your code
     ports:
-      - "127.0.0.1:8081:80"         # Exposes standard Apache port 80
-    environment:
-      - DB_HOST=db
-      - DB_DATABASE=${DB_DATABASE}
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - APP_KEY=${APP_KEY}
-      - APP_DEBUG=false
+      - "127.0.0.1:8081:80"
+    # THIS IS THE MAGIC FIX:
+    env_file: 
+      - .env
     depends_on:
       - db
     networks:
