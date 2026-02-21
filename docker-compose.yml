@@ -7,17 +7,21 @@ services:
       - MARIADB_USER=${DB_USERNAME}
       - MARIADB_PASSWORD=${DB_PASSWORD}
       - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+    volumes:
+      # This ensures your database survives CI/CD pushes and server reboots
+      - db_data:/bitnami/mariadb
     networks:
       - latasisa-net
     restart: always
 
   app:
-    image: ghcr.io/itstealth/latasia:latest  # <--- Uses your GitHub built image
+    image: ghcr.io/itstealth/latasia:latest
     container_name: latasisa_app
     ports:
       - "127.0.0.1:8081:80"
     env_file: 
-      - .env  # <--- Fixes the SQLite connection error
+      # This forces Laravel to read your MariaDB credentials instead of defaulting to SQLite
+      - .env
     depends_on:
       - db
     networks:
@@ -27,3 +31,7 @@ services:
 networks:
   latasisa-net:
     driver: bridge
+
+volumes:
+  # This declares the persistent storage volume for MariaDB
+  db_data:
