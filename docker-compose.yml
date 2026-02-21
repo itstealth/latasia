@@ -12,13 +12,12 @@ services:
     restart: always
 
   app:
-    image: ghcr.io/itstealth/latasia:latest
+    image: ghcr.io/itstealth/latasia:latest  # <--- Uses your GitHub built image
     container_name: latasisa_app
     ports:
       - "127.0.0.1:8081:80"
-    # THIS IS THE MAGIC FIX:
     env_file: 
-      - .env
+      - .env  # <--- Fixes the SQLite connection error
     depends_on:
       - db
     networks:
