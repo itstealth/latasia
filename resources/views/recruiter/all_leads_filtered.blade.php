@@ -174,16 +174,25 @@
                                                 <th>Disposition</th>
                                                 <th>Country</th>
                                                 <th>Action</th>
+<<<<<<< HEAD
                                                 <th>WhatsApp</th>
+=======
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 
                                             </tr>
                                         </thead>
                                         <tbody>
+<<<<<<< HEAD
                                             @php $i = 1; @endphp
 
                                             @forelse ($all_leads as $item)
                                                 <tr>
 
+=======
+                                            @php($i = 1)
+                                            @forelse ($all_leads as $item)
+                                                <tr>
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                                     <td>{{ $i++ }}</td>
                                                     <td>{{ $item->lead_code ?? 'N/A' }}</td>
                                                     <td>{{ $item->job_title ?? 'N/A' }}</td>
@@ -192,6 +201,7 @@
                                                     <td>{{ $item->lead_disposition ?? 'N/A' }}</td>
                                                     <td>{{ $item->countryRelation?->name ?? 'N/A' }}</td>
 
+<<<<<<< HEAD
                                                     <!-- View Button -->
                                                     <td class="text-center">
                                                         <a href="{{ route('recruiter.lead.fulldetails', $item->id) }}"
@@ -287,6 +297,22 @@
                                                 </tr>
                                             @endforelse
 
+=======
+                                                    <td>
+                                                        <a href="{{ route('recruiter.lead.fulldetails', $item->id) }}"
+                                                            class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-users"></i> Action
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-danger">
+                                                      No leads found for the selected criteria
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                         </tbody>
 
                                     </table>
@@ -347,6 +373,7 @@
 
     });
 </script>
+<<<<<<< HEAD
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
@@ -411,3 +438,5 @@
 
     });
 </script>
+=======
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306

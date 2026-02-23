@@ -38,7 +38,11 @@ class Employee extends Model
         'medical_cleared',
         'deployment_ready',
         'status',
+<<<<<<< HEAD
         'deployment_status',
+=======
+         'deployment_status',
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
         'converted_at',
     ];
 

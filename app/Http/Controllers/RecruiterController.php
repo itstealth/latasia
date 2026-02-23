@@ -62,9 +62,13 @@ class RecruiterController extends Controller
         return view('admin.recruiter.recruiter_edit', compact('recruiter'));
     } // End Method
 
+<<<<<<< HEAD
 
 
 public function UpdateRecruiter(Request $request, $id)
+=======
+   public function UpdateRecruiter(Request $request, $id)
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 {
     
     $recruiter = Recruiter::findOrFail($id);
@@ -81,7 +85,10 @@ public function UpdateRecruiter(Request $request, $id)
         ->with('success', 'Recruiter updated successfully');
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     public function DeleteRecruiter($id)
     {
         Recruiter::findOrFail($id)->delete();

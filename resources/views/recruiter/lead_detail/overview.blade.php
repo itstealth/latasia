@@ -270,7 +270,11 @@
                                         value="{{ old('current_location', $lead->current_location) }}">
                                 </div>
 
+<<<<<<< HEAD
 
+=======
+                                
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                 <div class="col-md-3">
                                     <label class="form-label">Country</label>
                                     <select name="country" class="form-select">
@@ -295,7 +299,11 @@
                                         @endforeach
                                     </select>
                                 </div>
+<<<<<<< HEAD
 
+=======
+                                
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                 <div class="col-md-3">
                                     <label class="form-label">Current City</label>
                                     <input type="text" class="form-control" name="city"
@@ -403,8 +411,13 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
 
+=======
+                    
+                    
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                     <!-- TRC Details -->
                     <div class="card mb-4 border-0 shadow-sm">
                         <div class="card-header bg-light fw-semibold">
@@ -439,8 +452,13 @@
 
                                 <div class="col-md-3 d-none" id="yellowCardStampingDate">
                                     <label class="form-label fw-semibold">Date of Stamping</label>
+<<<<<<< HEAD
                                     <input type="date" name="yellow_card_stamping_date" class="form-control"
                                         value="{{ old('yellow_card_stamping_date', $lead->yellow_card_stamping_date ?? '') }}">
+=======
+                                    <input type="date" name="yellowcard_stamping_date" class="form-control"
+                                        value="{{ old('yellowcard_stamping_date', $lead->yellowcard_stamping_date ?? '') }}">
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                 </div>
 
                                 <!-- TRC Country -->
@@ -467,8 +485,13 @@
                                 <!-- TRC Expiry Date -->
                                 <div class="col-md-3">
                                     <label class="form-label fw-semibold">TRC Expiry Date</label>
+<<<<<<< HEAD
                                     <input type="date" name="trc_expriry_date" class="form-control"
                                         value="{{ old('trc_expriry_date', $lead->trc_expriry_date ?? '') }}">
+=======
+                                    <input type="date" name="trc_expiry_date" class="form-control"
+                                        value="{{ old('trc_expiry_datetrc_expiry_date', $lead->trc_expiry_date ?? '') }}">
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                 </div>
 
                             </div>
@@ -513,4 +536,8 @@
         // On change
         trcStatus.addEventListener('change', toggleYellowCardField);
     });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306

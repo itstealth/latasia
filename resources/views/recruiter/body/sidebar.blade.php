@@ -44,6 +44,7 @@
                     </ul>
                 </li>
 
+<<<<<<< HEAD
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -59,6 +60,8 @@
                     </ul>
                 </li>
 
+=======
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
             </ul>
         </div>
         <!-- Sidebar -->

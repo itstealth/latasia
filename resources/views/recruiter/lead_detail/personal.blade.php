@@ -20,7 +20,11 @@
                             @foreach ($employers as $employer)
                                 <option value="{{ $employer->id }}"
                                     {{ old('employer_id', $lead->employer_id) == $employer->id ? 'selected' : '' }}>
+<<<<<<< HEAD
                                     {{ $employer->name }}
+=======
+                                    {{ $employer->company_name }}
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                 </option>
                             @endforeach
                         </select>

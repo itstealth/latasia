@@ -15,7 +15,11 @@
                             @foreach ($employers as $employer)
                                 <option value="{{ $employer->id }}"
                                     {{ old('employer_id', $deployment->employer_id ?? '') == $employer->id ? 'selected' : '' }}>
+<<<<<<< HEAD
                                     {{ $employer->name }}
+=======
+                                    {{ $employer->company_name }}
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                 </option>
                             @endforeach
                         </select>
@@ -82,7 +86,10 @@
                     </div>
 
                     <!-- Location -->
+<<<<<<< HEAD
                     
+=======
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                    <div class="col-md-4 mb-3">
                                     <label class="form-label">Country</label>
                                     <select name="country" class="form-select">

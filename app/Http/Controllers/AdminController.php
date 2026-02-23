@@ -69,7 +69,11 @@ public function InvoiceAdd()
 
 public function StoreInvoiceSave(Request $request)
 {
+<<<<<<< HEAD
     // ✅ VALIDATION (Passport fields removed)
+=======
+    // âœ… VALIDATION (Passport fields removed)
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     $validated = $request->validate([
         'customer_name'      => 'required|string',
         'customer_address'   => 'required|string',
@@ -81,21 +85,37 @@ public function StoreInvoiceSave(Request $request)
         'payment_deadline'   => 'required|date',
     ]);
 
+<<<<<<< HEAD
     // 🔒 SERVER-SIDE CALCULATION
+=======
+    // ðŸ”’ SERVER-SIDE CALCULATION
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     $netPrice   = $validated['quantity'] * $validated['unit_price'];
     $vatValue   = 0;
     $grossPrice = $netPrice;
 
+<<<<<<< HEAD
     // 🔢 SAFE INVOICE NUMBER GENERATION
     $lastId = NewInvoice::max('id') ?? 0;
     $invoiceNumber = 'A-' . date('Y') . '-' . ($lastId + 1);
 
     // 💾 SAVE INVOICE
+=======
+    // ðŸ”¢ SAFE INVOICE NUMBER GENERATION
+    $lastId = NewInvoice::max('id') ?? 0;
+    $invoiceNumber = 'A-' . date('Y') . '-' . ($lastId + 1);
+
+    // ðŸ’¾ SAVE INVOICE
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     $invoice = NewInvoice::create([
 
         // ================= COMPANY =================
         'company_name'    => 'All 4 You Work Force KFT.',
+<<<<<<< HEAD
         'company_address' => '6000 Kecskemét, Katona József u.1',
+=======
+        'company_address' => '6000 KecskemÃ©t, Katona JÃ³zsef u.1',
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
         'tax_number'      => '32530960-2-13',
 
         // ================= BANK =================
@@ -124,14 +144,21 @@ public function StoreInvoiceSave(Request $request)
         'gross_price' => $grossPrice,
     ]);
 
+<<<<<<< HEAD
     // 📄 REDIRECT TO PDF
+=======
+    // ðŸ“„ REDIRECT TO PDF
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     return redirect()->route('admin.invoice.pdf', $invoice->id);
 }
 
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 public function downloadInvoice(NewInvoice $invoice)
 {
     $logoPath = public_path('backend/assets/images/logo45.jpg');
@@ -161,7 +188,10 @@ public function downloadInvoice(NewInvoice $invoice)
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 public function InvoiceList()
     {
         $invoices = NewInvoice::latest()->get();

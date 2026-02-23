@@ -41,7 +41,11 @@
                         <div class="card shadow-sm border-0">
                             <div class="card-body">
 
+<<<<<<< HEAD
                                 <h5 class="card-title mb-3 text-muted">Employer List</h5>
+=======
+                                <h5 class="card-title mb-3 text-muted">Invoice List</h5>
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 
                                 <div class="table-responsive">
                                     <table id="datatable-buttons"
@@ -50,8 +54,13 @@
                                             <tr>
                                                 <th style="width:5%">#</th>
                                                 <th>Customer Name</th>
+<<<<<<< HEAD
                                                 <th>Invoice Amount</th>
                                                 <th>Issue Date</th>
+=======
+                                                 <th>Invoice Amount</th>
+                                                 <th>Issue Date</th>
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                                 <th>Due Date</th>
 
                                                 <th style="width:15%">Download</th>
@@ -70,14 +79,23 @@
 
                                                     <td>
                                                         <a href="{{ route('admin.invoice.pdf', $item->id) }}"
+<<<<<<< HEAD
                                                             class="btn btn-sm btn-outline-success"
                                                             title="Download Invoice PDF">
+=======
+                                                            class="btn btn-sm btn-outline-success" title="Download Invoice PDF">
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                                             <i class="fas fa-download"></i>
                                                         </a>
 
 
+<<<<<<< HEAD
                                                         <!-- Action Buttons -->
 
+=======
+                                                    <!-- Action Buttons -->
+                                                    
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                                 </tr>
                                             @empty
                                                 <tr>

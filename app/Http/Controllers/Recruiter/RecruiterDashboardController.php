@@ -137,6 +137,7 @@ class RecruiterDashboardController extends Controller
     }
 
     public function leadFullDetailPage(Request $request, $lead_id)
+<<<<<<< HEAD
     {
         $lead = Lead::with([
             'vacancy',
@@ -160,10 +161,36 @@ class RecruiterDashboardController extends Controller
         $employers = Employer::where('status', 1)->get();
         $recruiters = Recruiter::where('status', 1)->get();
         /*
+=======
+{
+    $lead = Lead::with([
+        'vacancy',
+        'employer',
+        'recruiter',
+        'employee',
+        'employee.compliance',
+        'employee.deployment',
+        'employee.timesheets',
+        'employee.invoices',
+        'employee.commissions',
+    ])->findOrFail($lead_id);
+
+    $employee    = $lead->employee;
+    $compliance  = $employee?->compliance;
+    $deployment  = $employee?->deployment;
+    $timesheets  = $employee?->timesheets ?? collect();
+    $invoices    = $employee?->invoices ?? collect();
+    $commissions = $employee?->commissions ?? collect();
+
+    $employers = Employer::where('status', 1)->get();
+    $recruiters = Recruiter::where('status', 1)->get();
+    /*
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     |--------------------------------------------------------------------------
     | TIMESHEET LOGIC (UNCHANGED)
     |--------------------------------------------------------------------------
     */
+<<<<<<< HEAD
         $workDate = $request->get('work_date');
         $currentTimesheet = null;
 
@@ -185,11 +212,35 @@ class RecruiterDashboardController extends Controller
         }
 
         /*
+=======
+    $workDate = $request->get('work_date');
+    $currentTimesheet = null;
+
+    if ($employee && $deployment) {
+
+        if ($workDate) {
+            $currentTimesheet = EmployeeTimesheet::where('employee_id', $employee->id)
+                ->where('deployment_id', $deployment->id)
+                ->where('work_date', $workDate)
+                ->first();
+        }
+
+        if (!$currentTimesheet) {
+            $currentTimesheet = EmployeeTimesheet::where('employee_id', $employee->id)
+                ->where('deployment_id', $deployment->id)
+                ->latest('work_date')
+                ->first();
+        }
+    }
+
+    /*
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     |--------------------------------------------------------------------------
     | ✅ NEW SAFE ADDITION (NO BREAKING)
     |--------------------------------------------------------------------------
     */
 
+<<<<<<< HEAD
         // Lead se hi project & vacancy uthao
         $projects = collect();
         $vacancies = collect();
@@ -230,6 +281,48 @@ class RecruiterDashboardController extends Controller
         ));
     }
 
+=======
+    // Lead se hi project & vacancy uthao
+    $projects = collect();
+    $vacancies = collect();
+
+    if ($lead->employer_id) {
+        $projects = Project::where('employer_id', $lead->employer_id)->get();
+    }
+
+    if ($lead->project_id) {
+        $vacancies = Vacancy::where('project_id', $lead->project_id)->get();
+    }
+
+    $projectId = $deployment?->project_id;
+
+    $countries = Country::orderBy('name')->get();
+
+   $jobCategories = JobCategories::orderBy('name')->get();
+   $jobSalaries   = JobSalary::orderBy('name')->get();
+
+    return view('recruiter.leads_full_detils', compact(
+        'lead',
+        'employee',
+        'compliance',
+        'deployment',
+        'timesheets',
+        'invoices',
+        'commissions',
+        'employers',
+        'projects',      // ✅ added
+        'vacancies',     // ✅ added
+        'currentTimesheet',
+        'workDate',
+        'projectId',
+        'countries',
+        'jobCategories',
+        'jobSalaries',
+        'recruiters'  // ✅ added
+    ));
+}
+
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 
 
 
@@ -314,6 +407,7 @@ class RecruiterDashboardController extends Controller
             ->with('success', 'Lead successfully processed');
     }
 
+<<<<<<< HEAD
     public function RecruiterAllLeads(Request $request)
     {
         // ✅ Get logged-in recruiter
@@ -444,6 +538,138 @@ class RecruiterDashboardController extends Controller
         ));
     }
 
+=======
+   public function RecruiterAllLeads(Request $request)
+{
+    // ✅ Get logged-in recruiter
+    $recruiter = Auth::guard('recruiter')->user();
+
+    if (!$recruiter) {
+        return redirect()->route('recruiter.login');
+    }
+
+    // ✅ Base query
+    $query = Lead::with('countryRelation')
+        ->where('recruiter_id', $recruiter->id);
+
+    // ✅ Disposition logic
+    if ($request->filled('disposition')) {
+        // If user selects a disposition, apply it
+        $query->where('lead_disposition', $request->disposition);
+    } else {
+        // Default: exclude "interested"
+        $query->where('lead_disposition', '!=', 'interested');
+    }
+
+    // ✅ Filters
+    if ($request->filled('country')) {
+        $query->where('country', $request->country);
+    }
+
+    if ($request->filled('location')) {
+        $query->where('current_location', $request->location);
+    }
+
+    if ($request->filled('job_title')) {
+        $query->where('job_title', $request->job_title);
+    }
+
+    if ($request->filled('project_id')) {
+        $query->where('project_id', $request->project_id);
+    }
+
+    if ($request->filled('start_date')) {
+        $query->whereDate('created_at', '>=', $request->start_date);
+    }
+
+    if ($request->filled('end_date')) {
+        $query->whereDate('created_at', '<=', $request->end_date);
+    }
+
+    // ✅ Fetch leads
+    $all_leads = $query->orderBy('id', 'desc')->get();
+
+    // ✅ Dropdown data
+     $countryList = Country::orderBy('name')->get();
+   
+    $locations = Lead::distinct()->pluck('current_location')->filter();
+    $jobTitles = Lead::distinct()->pluck('job_title')->filter();
+    $projects  = Project::orderBy('project_name')->get();
+
+    return view('recruiter.all_leads_filtered', compact(
+        'all_leads',
+       
+        'countryList',
+        'locations',
+        'jobTitles',
+        'projects'
+    ));
+}
+
+
+   public function RecruiterInterestedLeads(Request $request)
+{
+    $recruiter = Auth::guard('recruiter')->user();
+
+    if (!$recruiter) {
+        return redirect()->route('recruiter.login');
+    }
+
+    // ✅ Base query with country relation
+    $query = Lead::with('countryRelation')
+        ->where('recruiter_id', $recruiter->id);
+
+    // ✅ Default disposition
+    if ($request->filled('disposition')) {
+        $query->where('lead_disposition', $request->disposition);
+    } else {
+        $query->where('lead_disposition', 'interested');
+    }
+
+    // ✅ Filters
+    if ($request->filled('country')) {
+        $query->where('country', $request->country); // country ID
+    }
+
+    if ($request->filled('location')) {
+        $query->where('current_location', $request->location);
+    }
+
+    if ($request->filled('job_title')) {
+        $query->where('job_title', $request->job_title);
+    }
+
+    if ($request->filled('project_id')) {
+        $query->where('project_id', $request->project_id);
+    }
+
+    if ($request->filled('start_date')) {
+        $query->whereDate('created_at', '>=', $request->start_date);
+    }
+
+    if ($request->filled('end_date')) {
+        $query->whereDate('created_at', '<=', $request->end_date);
+    }
+
+    // ✅ Final data
+    $all_leads = $query->orderBy('id', 'desc')->get();
+
+    // ✅ Dropdown data (CORRECT)
+    $countryList = Country::orderBy('name')->get(); // full country table
+    $locations   = Lead::distinct()->pluck('current_location')->filter();
+    $jobTitles   = Lead::distinct()->pluck('job_title')->filter();
+    $projects    = Project::orderBy('project_name')->get();
+
+    return view('recruiter.all_leads', compact(
+        'all_leads',
+        'countryList',
+        'locations',
+        'jobTitles',
+        'projects'
+    ));
+}
+
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 
     public function show(Lead $lead)
     {
@@ -452,6 +678,7 @@ class RecruiterDashboardController extends Controller
         return view('recruiter.leads_show', compact('lead', 'employers'));
     } // End Method
 
+<<<<<<< HEAD
     public function getEmployerProjects($employerId)
     {
         return response()->json(
@@ -469,6 +696,25 @@ class RecruiterDashboardController extends Controller
                 ->get()
         );
     }
+=======
+   public function getEmployerProjects($employerId)
+{
+    return response()->json(
+        Project::where('employer_id', $employerId)
+            ->select('id', 'project_name')
+            ->get()
+    );
+}
+
+public function getProjectVacancies($projectId)
+{
+    return response()->json(
+        Vacancy::where('project_id', $projectId)
+            ->select('id', 'openings')
+            ->get()
+    );
+}
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 
     public function mapToVacancy(Request $request, Lead $lead)
     {
@@ -760,6 +1006,7 @@ class RecruiterDashboardController extends Controller
     }
 
 
+<<<<<<< HEAD
     public function UpdateLeadOverview(Request $request, Lead $lead)
     {
         // ✅ Logged-in recruiter
@@ -856,4 +1103,56 @@ class RecruiterDashboardController extends Controller
 
 
     
+=======
+       public function UpdateLeadOverview(Request $request, $id)
+{
+    $recruiter = Auth::guard('recruiter')->user();
+
+    if (!$recruiter) {
+        return redirect()->route('recruiter.login');
+    }
+
+    $lead = Lead::findOrFail($id);
+
+    $validated = $request->validate([
+        'lead_code' => 'nullable|string|max:50',
+        'lead_source_name' => 'nullable|string|max:255',
+        'lead_disposition' => 'required|string',
+        'recruiter_id' => 'nullable|exists:recruiters,id',
+
+        'name' => 'required|string|max:255',
+        'email' => 'nullable|email|max:255',
+        'phone' => 'nullable|string|max:20',
+        'current_location' => 'nullable|string|max:255',
+
+        'passport_number' => 'nullable|string|max:50',
+        'passport_type' => 'nullable|string|max:50',
+        'overseas_experience' => 'nullable|string|max:50',
+        'experience' => 'nullable|string|max:50',
+
+        'job_title' => 'nullable|string|max:255',
+        'skills' => 'nullable|string|max:255',
+
+        'country' => 'nullable|integer|exists:countries,id',
+        'employer_id' => 'nullable|integer|exists:employers,id',
+
+        'category_id' => 'nullable|integer|exists:job_categories,id',
+        'salary_id' => 'nullable|integer|exists:job_salaries,id',
+
+        'trc_status' => 'nullable|string|max:255',
+        'trc_country' => 'nullable|integer|exists:countries,id',
+        'trc_validity' => 'nullable|string|max:255',
+        'trc_expiry_date' => 'nullable|date',
+        'yellowcard_stamping_date' => 'nullable|date',
+
+        'city' => 'nullable|string|max:255',
+    ]);
+
+    $lead->update($validated);
+
+    return back()->with('success', 'Lead updated successfully');
+}
+
+
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 }

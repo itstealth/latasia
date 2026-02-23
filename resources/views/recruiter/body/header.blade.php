@@ -80,10 +80,16 @@
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<<<<<<< HEAD
             
                                     <img class="rounded-circle header-profile-user" src="{{ (!empty($recruiter->profile_image))?url('upload/recruiter_image/'.$recruiter->profile_image):url('upload/no_image.jpg') }}"
                                     alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ms-1">{{ $recruiter->name }}</span>
+=======
+                                <img class="rounded-circle header-profile-user" src=""
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1"></span>
+>>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
