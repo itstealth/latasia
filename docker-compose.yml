@@ -19,8 +19,6 @@ services:
     container_name: latasisa_phpmyadmin
     environment:
       - PMA_HOST=db
-      - PMA_USER=${DB_USERNAME}
-      - PMA_PASSWORD=${DB_PASSWORD}
     ports:
       - "127.0.0.1:8082:80"
     networks:
