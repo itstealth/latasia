@@ -70,9 +70,9 @@
             <div class="col-lg-2 col-6">
                 <div class="footer-item mb-4 mb-lg-0">
                     <p class="text-white fs-16 mb-3">For Candidates</p>
-                    <ul class="list-unstyled footer-list mb-0">
-                        <li><a href="{{ url('candidate/login') }}" class="text-white"><i class="mdi mdi-chevron-right"></i> Login</a></li>
-                    </ul>
+                    {{-- <ul class="list-unstyled footer-list mb-0">
+                        <li><a href="#" class="text-white"><i class="mdi mdi-chevron-right"></i> </a></li>
+                    </ul> --}}
                 </div>
             </div>
 

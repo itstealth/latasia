@@ -53,8 +53,8 @@
                             <div class="widget widget_about">
                                 <!-- Logo -->
                                 <div class="logo-footer mb-3">
-                                    <a href="index.html">
-                                        <img src="{{ asset('home/assets/images/latasia_white.png') }}" alt="Vasper Global Logo" class="img-fluid" style="max-height: 50px;">
+                                    <a href="{{'/'}}">
+                                        <img src="{{ asset('home/assets/images/website.jpg') }}" alt="Vasper Global Logo" class="img-fluid" style="max-height: 50px;">
                                     </a>
                                 </div>
                         
@@ -69,7 +69,11 @@
                                         <i class="fas fa-map-marker-alt text-primary me-2 mt-1"></i>
                                         <p class="mb-0" style="font-size: 0.9rem;">
                                             <strong>Address:</strong><br>
-                                            Latvia
+                                            Reach Europe Sp. Z.o.o. 
+                                            Address: 38, Grzybowska 2, 00-131 Warsaw, Poland
+                                            NIP:5253073931</br>
+                                            KRS:0001215381
+
                                         </p>
                                     </li>
                         
@@ -85,7 +89,7 @@
                                         <i class="fas fa-phone-alt text-primary me-2 mt-1"></i>
                                         <p class="mb-0" style="font-size: 0.9rem;">
                                             <strong>Call:</strong><br>
-                                            +39 339 186 0672
+                                           +48 731 552 047
                                         </p>
                                     </li>
                                 </ul>
@@ -125,7 +129,7 @@
                                     <div class="widget">
                                         <h5 class="text-white fw-semibold mb-4">For Candidates</h5>
                                         <ul class="list-unstyled footer-links">
-                                            <li><a href="{{ url('candidate/login') }}">Login</a></li>
+                                            <li><a href="#"></a></li>
                                         </ul>
                                     </div>
                                 </div>
