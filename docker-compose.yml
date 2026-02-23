@@ -10,10 +10,23 @@ services:
     volumes:
       # This ensures your database survives CI/CD pushes and server reboots
       - db_data:/bitnami/mariadb
-    ports:
-      - "3306:3306"
     networks:
       - latasisa-net
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: latasisa_phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=${DB_USERNAME}
+      - PMA_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "127.0.0.1:8082:80"
+    networks:
+      - latasisa-net
+    depends_on:
+      - db
     restart: always
 
   app:
