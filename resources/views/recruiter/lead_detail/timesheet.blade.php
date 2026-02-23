@@ -18,11 +18,7 @@
     @endif
 
     <form action="" method="POST">
-<<<<<<< HEAD
         @csrf 
-=======
-        @csrf fff
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
 
         <div class="row">
 

@@ -41,11 +41,7 @@
         <div class="col-md-4 mb-3">
             <label class="form-label">Medical Status</label>
             <select name="medical_status" class="form-select">
-<<<<<<< HEAD
                 @foreach(['pending','fit','unfit'] as $status)
-=======
-                @foreach(['pending','fit','unfit','not applicable'] as $status)
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                     <option value="{{ $status }}"
                         @selected(old('medical_status', $compliance->medical_status ?? 'pending') == $status)>
                         {{ ucfirst($status) }}
@@ -78,11 +74,7 @@
         <div class="col-md-4 mb-3">
             <label class="form-label">Trade Test Status</label>
             <select name="trade_test_status" class="form-select">
-<<<<<<< HEAD
                 @foreach(['pending','pass','fail'] as $status)
-=======
-                @foreach(['pending','pass','fail','not applicable'] as $status)
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                     <option value="{{ $status }}"
                         @selected(old('trade_test_status', $compliance->trade_test_status ?? 'pending') == $status)>
                         {{ ucfirst($status) }}
@@ -100,11 +92,7 @@
         <div class="col-md-4 mb-3">
             <label class="form-label">Police Verification</label>
             <select name="police_verification" class="form-select">
-<<<<<<< HEAD
                 @foreach(['pending','verified','rejected'] as $status)
-=======
-                @foreach(['pending','verified','rejected','not applicable'] as $status)
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                     <option value="{{ $status }}"
                         @selected(old('police_verification', $compliance->police_verification ?? 'pending') == $status)>
                         {{ ucfirst($status) }}
@@ -119,11 +107,7 @@
         <div class="col-md-4 mb-3">
             <label class="form-label">Visa Status</label>
             <select name="visa_status" class="form-select">
-<<<<<<< HEAD
                 @foreach(['pending','approved','rejected'] as $status)
-=======
-                @foreach(['pending','approved','rejected','not applicable'] as $status)
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                     <option value="{{ $status }}"
                         @selected(old('visa_status', $compliance->visa_status ?? 'pending') == $status)>
                         {{ ucfirst($status) }}

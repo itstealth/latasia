@@ -24,7 +24,6 @@ class EmployeeDeployment extends Model
         'created_by',
         'updated_by',
     ];
-<<<<<<< HEAD
 
     public function employer()
     {
@@ -40,7 +39,5 @@ class EmployeeDeployment extends Model
     {
         return $this->belongsTo(Vacancy::class);
     }
-=======
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     
 }

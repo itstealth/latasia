@@ -11,12 +11,9 @@ class Lead extends Model
      protected $table = 'leads';
     protected $guarded =[];
 
-<<<<<<< HEAD
     protected $casts = [
     'whatsapp_sent_at' => 'datetime',
 ];
-=======
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
     public function employer()
     {
         return $this->belongsTo(Employer::class);

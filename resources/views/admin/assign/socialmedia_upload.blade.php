@@ -87,11 +87,6 @@
                                     </th>
                                     <th>#</th>
                                     <th>Name</th>
-<<<<<<< HEAD
-=======
-                                    <th>Job Tital</th>
-                                    <th>Current Location</th>
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Partner</th>
@@ -110,11 +105,6 @@
 
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->name }}</td>
-<<<<<<< HEAD
-=======
-                                    <td>{{ $item->job_title }}</td>
-                                    <td>{{ $item->current_location }}</td>
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>

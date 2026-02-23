@@ -95,11 +95,7 @@ public function AssignSocialMediaLeads(Request $request)
      public function AssignEmployerLeads()
     { 
         $recruiter =Recruiter::OrderBy('id','ASC')->get();
-<<<<<<< HEAD
         $employer_leads = SocialMediaLeads::latest()
-=======
-        $employer_leads = PartnerUpload::latest()
->>>>>>> 696cd71a52571175287ca3b46bd59744593fc306
         ->where('recruiter', 0)
         ->orderBy('id', 'ASC')
         ->get();
