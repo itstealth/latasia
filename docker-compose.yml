@@ -10,6 +10,8 @@ services:
     volumes:
       # This ensures your database survives CI/CD pushes and server reboots
       - db_data:/bitnami/mariadb
+    ports:
+      - "100.66.61.11:3306:3306"
     networks:
       - latasisa-net
     restart: always
