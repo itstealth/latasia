@@ -60,7 +60,7 @@
                         
                                 <!-- About Text -->
                                 <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                    At Latasia International, every candidate we support, and every employer we serve, is a partnership in success.
+                                    At Latasia International, test every candidate we support, and every employer we serve, is a partnership in success.
                                 </p>
                         
                                 <!-- Contact Info -->
