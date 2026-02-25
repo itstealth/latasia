@@ -14,20 +14,17 @@ services:
       - "3306:3306"
     networks:
       - latasisa-net
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
     restart: always
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: latasisa_phpmyadmin
-    environment:
-      - PMA_HOST=db
-    ports:
-      - "127.0.0.1:8082:80"
-    networks:
-      - latasisa-net
-    depends_on:
-      - db
-    restart: always
+
 
   app:
     image: ghcr.io/itstealth/latasia:latest
@@ -41,6 +38,14 @@ services:
       - db
     networks:
       - latasisa-net
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
     restart: always
 
 networks:
