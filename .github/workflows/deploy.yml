@@ -45,5 +45,6 @@ jobs:
           script: |            
             cd /var/www/latasisa            
             docker compose pull            
-            docker compose up -d --remove-orphans            
+            docker compose up -d --remove-orphans
+            sleep 15
             docker compose exec -T app php artisan migrate --force
