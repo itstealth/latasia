@@ -37,7 +37,7 @@
                         <div class="col-lg-6">
                             <div class="section-title mt-4 mt-lg-0">
                                 <h3 class="title">Get in touch</h3>
-                                <p class="text-muted">Connect with <span style="color: #1D649E">Vasper Staffing</span> Where
+                                <p class="text-muted">Connect with <span style="color: #1D649E">Latasia International</span> Where
                                     talent meets opportunity, and businesses grow stronger.</p>
                                 <form method="post" action="{{ route('store.contactus') }}" class="contact-form mt-4"
                                     name="myForm" id="myForm">
