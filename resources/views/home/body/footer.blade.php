@@ -69,7 +69,7 @@
                                         <i class="fas fa-map-marker-alt text-primary me-2 mt-1"></i>
                                         <p class="mb-0" style="font-size: 0.9rem;">
                                             <strong>Address:</strong><br>
-                                            Reach Europe Sp. Z.o.o. 
+                                            Latasia International 
                                             Address: 38, Grzybowska 2, 00-131 Warsaw, Poland
                                             NIP:5253073931</br>
                                             KRS:0001215381
